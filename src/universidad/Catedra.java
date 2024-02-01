@@ -9,6 +9,7 @@ public class Catedra {
     private Departamento departamento;
     private Set<Facultad> facultades;
     private Set<Profesor> profesores;
+    private Set<Adscrito> adscritos;
 
     public Catedra(String idCatedra,String nombre, Departamento departamento) {
         this.idCatedra = idCatedra;
@@ -16,6 +17,7 @@ public class Catedra {
         this.departamento = departamento;
         this.facultades = new HashSet<>();
         this.profesores = new HashSet<>();
+        this.adscritos = new HashSet<>();
     }
 
     public String getIdCatedra() {
@@ -58,11 +60,22 @@ public class Catedra {
         this.profesores = profesores;
     }
 
+    public Set<Adscrito> getAdscritos() {
+        return adscritos;
+    }
+
+    public void setAdscritos(Set<Adscrito> adscritos) {
+        this.adscritos = adscritos;
+    }
+
     public void addFacultad(Facultad facultad){
         this.facultades.add(facultad);
     }
     public void addProfesor(Profesor profesor){
         this.profesores.add(profesor);
+    }
+    public void addAdscrito(Adscrito adscrito){
+        this.adscritos.add(adscrito);
     }
     @Override
     public String toString(){
