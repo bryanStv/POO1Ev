@@ -4,11 +4,13 @@ class Prestec {
     private int num_p;
     private int cantidad;
     private Sucursal sucursal;
+    private Client cliente;
 
-    public Prestec(int num_p, int cantidad, Sucursal sucursal) {
+    public Prestec(int num_p, int cantidad, Sucursal sucursal,Client cliente) {
         this.num_p = num_p;
         this.cantidad = cantidad;
         this.sucursal = sucursal;
+        this.cliente = cliente;
     }
 
     public int getNum_p() {
@@ -33,6 +35,14 @@ class Prestec {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public Client getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Client cliente) {
+        this.cliente = cliente;
     }
 
     @Override
