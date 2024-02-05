@@ -15,7 +15,6 @@ public class Ejemplar {
         this.historicos = new HashSet<>();
         this.fechasPrestamo = new HashSet<>();
     }
-
     public String getN_reg() {
         return n_reg;
     }
