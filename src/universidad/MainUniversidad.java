@@ -73,7 +73,9 @@ public class MainUniversidad {
                 for (Profesor p: c.getProfesores()){
                     System.out.println("\t\t\tProfesor que imparte la cátedra: "+p);
                     for(Adscrito a: p.getAdscritos()){
-                        System.out.println("\t\t\tAño desde que la imparte: "+a.getFecha()); //MAL
+                        if(a.getCatedra() == c){
+                            System.out.println("\t\t\tAño desde que la imparte: "+a.getFecha());
+                        }
                     }
                 }
                 for (Facultad f: c.getFacultades()){
