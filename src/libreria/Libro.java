@@ -78,6 +78,6 @@ public class Libro {
 
     @Override
     public String toString(){
-        return this.isbn + " " + this.nombre;
+        return this.nombre+"(isbn: "+this.isbn+")";
     }
 }

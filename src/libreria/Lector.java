@@ -43,6 +43,6 @@ public class Lector {
 
     @Override
     public String toString(){
-        return this.dni + " " + this.nombre;
+        return this.nombre+"("+this.dni+")";
     }
 }
