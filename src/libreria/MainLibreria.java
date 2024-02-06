@@ -108,21 +108,17 @@ public class MainLibreria {
     private static void imprimir(Editorial editorial){
         System.out.println("EDITORIAL: "+editorial.getNombre());
         for(Libro l:editorial.getLibros()){
-            System.out.println("\tLibro: "+l);
+            System.out.println("\tLibro: "+l+" Tema: "+l.getTema());
             for(Autor a:l.getAutores()){
                 System.out.println("\t\tAutor: "+a);
             }
             for (Ejemplar e: l.getEjemplares()){
                 System.out.println("\t\t\tEjemplar: "+e);
                 for(Historico h:e.getHistoricos()){
-                    //System.out.println("Historicos: "+h);
-                    for(String fecha:e.getFechasPrestamo()){
-                        if(!fecha.isBlank()){
-                            System.out.println("\t\t\t\tPrestado a: "+h.getLector());
-                            System.out.println("\t\t\t\tFecha de préstamo: "+fecha);
-                            System.out.println("\t\t\t\tFecha de termino: "+h.getFechaTerminacion());
-                        }
-                    }
+                    System.out.println("\t\t\t\tLector: "+h.getLector());
+                    System.out.println("\t\t\t\tInicio Préstamo: "+h.getFechaPrestamo());
+                    System.out.println("\t\t\t\tFin de Préstamo: "+h.getFechaTerminacion());
+                    System.out.println("\t\t\t\tHistoricos: "+h);
                 }
             }
         }
