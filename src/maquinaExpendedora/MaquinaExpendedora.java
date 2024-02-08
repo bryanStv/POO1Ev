@@ -1,16 +1,20 @@
 package maquinaExpendedora;
 
 import javax.management.InvalidAttributeValueException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MaquinaExpendedora {
     private String ticket;
     private int precioTicket;
     private int pagado;
     private int devolucion;
+    private Map<Integer,Integer> ahorros;
 
     public MaquinaExpendedora(String ticket,int precioTicket) {
         this.ticket = ticket;
         this.precioTicket = precioTicket;
+        this.ahorros = new HashMap<>();
     }
 
     public String getTicket() {
@@ -34,43 +38,54 @@ public class MaquinaExpendedora {
     }
 
     public void setPagado(int pagado) throws InvalidAttributeValueException{
-        if(this.pagado >= this.precioTicket){
+        if(pagado >= this.precioTicket){
             this.pagado = pagado;
         }else{
-            throw new InvalidAttributeValueException("Cantidad Introducida Incorrecta");
+            throw new InvalidAttributeValueException("Introduce la cantidad justa");
         }
     }
 
     public int getDevolucion() {
+        this.devolucion = this.pagado - this.precioTicket;
         return devolucion;
     }
 
-    public void setDevolucion(int devolucion) {
-        this.devolucion = devolucion;
-    }
-
-    private String devuelvo(int pagado) throws InvalidAttributeValueException{
+    private StringBuilder devuelvo(int pagado) throws InvalidAttributeValueException{
         setPagado(pagado);
-        int[] monedas = {1000,500,200,100,50,20,10,5,1};
-        int cantidad = this.precioTicket - pagado;
-        if(cantidad==0) return "0";
-        else{
-            StringBuilder resultado = new StringBuilder();
-            int aux = 0;
-            for(int i = 0;i < monedas.length;i++){
-                aux = monedas[i] - cantidad;
-                if(aux >= 0){
-                    resultado.append(monedas[i]).append(", ");
-                }
+        int[] monedas = {1000,500,200,100,50,20,10,5,2,1};
+        StringBuilder resultado = new StringBuilder();
+        int posicion = 0;
+        int devolver = pagado - this.precioTicket;
+        int cambio;
+        int resto;
+        while(true){
+            cambio = devolver/monedas[posicion];
+            resto = devolver%monedas[posicion];
+            if(resto == 0){
+                resultado.append(monedas[posicion]/100).append("€");
+                return resultado;
             }
-            return resultado.toString();
+            if(cambio/monedas[posicion] >= 0){
+                if(cambio != 0) {
+                    resultado.append(monedas[posicion]/100).append("€, ");
+                    devolver -= monedas[posicion];
+                    if(devolver >= monedas[posicion]){
+                        posicion = 0;
+                    }
+                }
+                if(devolver < monedas[posicion]){
+                    posicion++;
+                }
+            }else{
+                posicion++;
+            }
         }
     }
 
     @Override
     public String toString(){
         try {
-            return "Ticket: "+this.ticket + " Coste: "+this.precioTicket+" Pagado: "+this.pagado+" Devuelto: "+devuelvo(this.pagado);
+            return "Ticket: "+this.ticket + " Coste: "+this.precioTicket+" Pagado: "+this.pagado+" Devuelto: "+this.getDevolucion()+" Cambio: "+devuelvo(this.pagado);
         } catch (InvalidAttributeValueException e) {
             throw new RuntimeException(e);
         }
