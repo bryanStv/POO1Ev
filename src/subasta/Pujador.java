@@ -52,6 +52,6 @@ public class Pujador {
     }
     @Override
     public String toString() {
-        return this.ID+" "+this.name;
+        return this.name+"("+this.ID+") --> "+this.dinero;
     }
 }

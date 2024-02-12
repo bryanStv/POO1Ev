@@ -5,14 +5,13 @@ import java.util.Set;
 
 public class Lote {
     private int numeroLote;
-    private int precioSalida;
+    private int precioSalida = 0;
     private Set<Articulo> articulos;
     private Puja puja;
 
-    public Lote(int numeroLote, Puja puja, int precioSalida) {
+    public Lote(int numeroLote, Puja puja) {
         this.numeroLote = numeroLote;
         this.puja = puja;
-        this.precioSalida = precioSalida;
         this.articulos = new HashSet<>();
     }
 
@@ -50,6 +49,7 @@ public class Lote {
 
     public void addArticulo(Articulo articulo){
         this.articulos.add(articulo);
+        this.precioSalida += articulo.getPrecio();
     }
 
     @Override

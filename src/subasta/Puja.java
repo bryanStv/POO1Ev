@@ -11,10 +11,9 @@ public class Puja {
     private Pujador pujador;
     private Subasta subasta;
 
-    public Puja(Subasta subasta,int precioInicial) {
+    public Puja(Subasta subasta) {
         this.idPuja = contador++;
         this.subasta = subasta;
-        this.precioInicial = precioInicial;
         lotes = new HashSet<>();
     }
 
