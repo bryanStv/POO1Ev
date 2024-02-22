@@ -9,11 +9,6 @@ public class Agua extends Pokemon {
         System.out.println("Soy débil al tipo planta");;
     }
     @Override
-    public String getTipo() {
-        return super.getTipo();
-    }
-
-    @Override
     public void miTipo() {
         System.out.println("Soy de tipo agua");;
     }

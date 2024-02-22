@@ -3,31 +3,21 @@ package pokemon;
 public abstract class Pokemon {
     private String nombre;
     private String tipo;
-    private int movimientos;
+    private String[] movimientos;
     private int HP;
     private int ataque;
     private int defensa;
-    private int ataqueEspecial;
-    private int defensaEspecial;
-    private int velocidad;
 
     public Pokemon(String nombre,String tipo){
         this.nombre = nombre;
         this.tipo = tipo;
-        this.movimientos = 4;
+        this.movimientos = new String[4];
     }
 
-    public void estadisticas(int HP,int ataque,int ataqueEspecial, int defensa, int defensaEspecial, int velocidad){
+    public void estadisticas(int HP,int ataque, int defensa){
         this.HP = HP;
         this.ataque = ataque;
-        this.ataqueEspecial = ataqueEspecial;
         this.defensa = defensa;
-        this.defensaEspecial = defensaEspecial;
-        this.velocidad = velocidad;
-    }
-
-    public Pokemon(String tipo){
-        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -42,7 +32,7 @@ public abstract class Pokemon {
         return tipo;
     }
 
-    public int getMovimientos() {
+    public String[] getMovimientos() {
         return movimientos;
     }
 
@@ -62,7 +52,22 @@ public abstract class Pokemon {
     }
 
     public void fortalezas(){
-        System.out.println("El pokemin no es fuerte contra ninguno");
+        System.out.println("El pokemon no es fuerte contra ninguno");
+    }
+    public void estadisticasPokemon(){
+        System.out.printf("Sus estadisticas son: %d HP, %d Ataque, %d Defensa\n",this.HP,this.ataque,this.defensa);
+    }
+    public void listarMovimientos(){
+        int movs = 1;
+        for(String mov: movimientos){
+            System.out.println("Movimiento "+movs++ +": "+ mov);
+        }
+    }
+    public void addMovimientos(String mov1,String mov2,String mov3,String mov4){
+        movimientos[0] = mov1;
+        movimientos[1] = mov2;
+        movimientos[2] = mov3;
+        movimientos[3] = mov4;
     }
     @Override
     public String toString() {
