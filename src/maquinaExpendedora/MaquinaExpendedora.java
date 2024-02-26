@@ -1,6 +1,5 @@
 package maquinaExpendedora;
 
-import javax.management.InvalidAttributeValueException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,11 +36,11 @@ public class MaquinaExpendedora {
         return pagado;
     }
 
-    public void setPagado(int pagado) throws InvalidAttributeValueException{
+    public void setPagado(int pagado) throws IllegalArgumentException{
         if(pagado >= this.precioTicket){
             this.pagado = pagado;
         }else{
-            throw new InvalidAttributeValueException("Introduce la cantidad justa");
+            throw new IllegalArgumentException("Introduce la cantidad justa");
         }
     }
     public int getCajon() {

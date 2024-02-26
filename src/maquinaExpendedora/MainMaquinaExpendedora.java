@@ -1,6 +1,6 @@
 package maquinaExpendedora;
 
-import javax.management.InvalidAttributeValueException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMaquinaExpendedora {
@@ -22,7 +22,7 @@ public class MainMaquinaExpendedora {
                         System.out.println("Total a devolver: 0€");
                         System.exit(0);
                     }
-                    m1.setPagado(pagado);
+                    m1.setPagado(pagado+ m1.getPagado());
                     m1.devuelvo(pagado);
                     break;
                 }
@@ -30,9 +30,11 @@ public class MainMaquinaExpendedora {
                 System.out.print("No has introducido suficiente dinero, por favor, añade más(en centimos): ");
                 m1.addMoney(tc.nextInt());
             }
-        }catch (InvalidAttributeValueException e){
+        }catch (IllegalArgumentException e){
             System.out.println("Cantidad Requerida: "+m1.getPrecioTicket()+" Cantidad Pagada: "+m1.getPagado()+" Cajón: "+m1.getCajon());
             System.out.println("Por favor, introduzca un valor correcto");
+        } catch(InputMismatchException e){
+            System.out.println("Error");
         }
     }
 }
